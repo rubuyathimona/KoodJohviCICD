@@ -25,8 +25,14 @@ pipeline {
         }
         stage('deployment') {
             steps {
-                sh 'mkdir /kj_deployments/imona'
-                sh 'cp -r dist/kood-johvi-cicd/browser/* /kj_deployments/imona'
+            if (params.main == 'name'){
+                sh 'mkdir -p /kj_deployments/imona_name'
+                sh 'cp -r dist/kood-johvi-cicd/browser/* /kj_deployments/imona_name'
+}
+            if (params.main == 'develop'){
+                sh 'mkdir -p /kj_deployments/imona_develop'
+                sh 'cp -r dist/kood-johvi-cicd/browser/* /kj_deployments/imona_develop'
+}
                 echo "build complete"
             }
         }
